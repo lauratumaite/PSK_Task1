@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Restaurant #{locationForRestaurant.restaurant.title} locations:</h2>
+
+    <ol>
+        <ui:repeat value="#{locationForRestaurant.restaurant.location}" var="location">
+            <li>#{location.fullName}</li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <label>Location name: </label>
+        <h:inputText a:placeholder="name" value="#{locationForRestaurant.locationToCreate.fullName}" required="true" />
+        <h:commandButton value="Add location to the restaurant" action="#{locationForRestaurant.createLocation()}" >
+            <f:param name="restaurantId" value="#{locationForRestaurant.restaurant.id}" />
+        </h:commandButton>
+    </h:form>
+
+    <h2>Add food to this restaurant:</h2>
+    <h:form>
+        <label>Food name: </label>
+        <h:inputText a:placeholder="name" value="#{locationForRestaurant.foodToAdd.name}" required="true" />
+        <h:commandButton value="Add food to the restaurant" action="#{locationForRestaurant.createFood()}" >
+            <f:param name="restaurantId" value="#{locationForRestaurant.restaurant.id}" />
+        </h:commandButton>
+    </h:form>
+
+
+    <h:link outcome="index" value="Back to restaurant page"/>
+
+</h:body>
+</html>
