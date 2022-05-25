@@ -26,6 +26,18 @@
         <h:commandButton value="Add new restaurant" action="#{restaurants.createRestaurant}" />
     </h:form>
 
+    <h:form>
+        <label>Filter if restaurant has more than two foods: </label>
+        <h:commandButton value="Filter" action="#{restaurants.filterRestaurants}" />
+    </h:form>
+
+    <h2>restaurants with more than two foods:</h2>
+    <ol>
+        <ui:repeat value="#{restaurants.filteredRestaurants}" var="rest">
+            <li>#{rest.title}</li>
+        </ui:repeat>
+    </ol>
+
     <h2>Food:</h2>
     <ol>
         <ui:repeat value="#{foods.allFoods}" var="food">

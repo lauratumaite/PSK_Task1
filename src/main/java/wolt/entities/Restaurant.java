@@ -10,6 +10,8 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.io.Serializable;
+
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -20,9 +22,10 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 @Table(name = "RESTAURANT")
 @NamedQueries({
-        @NamedQuery(name = "Restaurant.findAll", query = "select a from Restaurant as a")
+        @NamedQuery(name = "Restaurant.findAll", query = "select a from Restaurant as a"),
+        @NamedQuery(name = "Restaurant.findByName", query = "select a from Restaurant as a where a.title= :name")
 })
-public class Restaurant {
+public class Restaurant implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

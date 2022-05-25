@@ -9,11 +9,18 @@
 <h:body>
     <h2>Restaurant #{locationForRestaurant.restaurant.title} locations:</h2>
 
-    <ol>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Location ID</th>
+        </tr>
         <ui:repeat value="#{locationForRestaurant.restaurant.location}" var="location">
-            <li>#{location.fullName}</li>
+            <tr>
+                <td><h:link value="#{location.fullName}" outcome="locationDetails?locationId=#{location.id}"/></td>
+                <td>#{location.locationId}</td>
+            </tr>
         </ui:repeat>
-    </ol>
+    </table>
     <h:form>
         <label>Location name: </label>
         <h:inputText a:placeholder="name" value="#{locationForRestaurant.locationToCreate.fullName}" required="true" />

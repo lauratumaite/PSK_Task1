@@ -2,6 +2,7 @@ package wolt.usecases;
 
 import wolt.entities.Food;
 import wolt.entities.Location;
+import wolt.interceptors.Logger;
 import wolt.entities.Restaurant;
 import wolt.persistence.RestaurantDAO;
 import wolt.persistence.FoodDAO;
@@ -51,6 +52,7 @@ public class LocationForRestaurant implements Serializable {
     private List<SelectItem> allFood;
 
     @Transactional
+    @Logger
     public String createLocation() {
         locationToCreate.setRestaurant(this.restaurant);
         locationDAO.persist(locationToCreate);
@@ -58,6 +60,7 @@ public class LocationForRestaurant implements Serializable {
     }
 
     @Transactional
+    @Logger
     public String createFood() {
         Food foundFood = foodDAO.findByName(foodToAdd.getName());
         if (isNull(foundFood)) {
@@ -85,6 +88,7 @@ public class LocationForRestaurant implements Serializable {
     }
 
     @PostConstruct
+    @Logger
     private void init() {
         Map<String, String > requestParams = getCurrentInstance()
                 .getExternalContext()

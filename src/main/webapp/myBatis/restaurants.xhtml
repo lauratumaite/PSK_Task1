@@ -21,11 +21,25 @@
 
         </ui:repeat>
     </ol>
+
     <h:form>
         <label>Restaurant title: </label>
         <h:inputText value="#{restaurantsMyBatis.restaurantToCreate.title}" required="true" />
         <h:commandButton value="Add new restaurant" action="#{restaurantsMyBatis.createRestaurant}" />
     </h:form>
+
+    <h:form>
+        <label>Filter if restaurant has more than two foods: </label>
+        <h:commandButton value="Filter" action="#{restaurantsMyBatis.filterRestaurants}" />
+    </h:form>
+
+    <h2>restaurants with more than two foods:</h2>
+    <ol>
+        <ui:repeat value="#{restaurantsMyBatis.filteredRestaurants}" var="rest">
+            <li>#{rest.title}</li>
+        </ui:repeat>
+    </ol>
+
     <h:link value="Back to jpa impl" outcome="/index"/>
 
     <hr/>
